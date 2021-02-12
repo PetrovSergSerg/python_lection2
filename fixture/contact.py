@@ -7,7 +7,7 @@ class ContactHelper:
         self.app = app
         self.menu = app.menu
 
-    def create_new_contact(self, contact: Contact):
+    def create(self, contact: Contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").send_keys(contact.firstname)
@@ -47,4 +47,4 @@ class ContactHelper:
 
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
-        self.menu.open_home_page()
+        self.menu.home()

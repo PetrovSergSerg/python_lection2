@@ -6,9 +6,9 @@ class GroupHelper:
         self.app = app
         self.menu = app.menu
 
-    def create_new_group(self, group: Group):
+    def create(self, group: Group):
         wd = self.app.wd
-        self.menu.open_groups_page()
+        self.menu.groups()
         wd.find_element_by_name("new").click()
 
         wd.find_element_by_name("group_name").clear()
