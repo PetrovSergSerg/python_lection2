@@ -1,6 +1,6 @@
 from random import randint, getrandbits
 import string
-import utils
+import model.utils as utils
 import datetime
 
 alphabet = string.ascii_letters

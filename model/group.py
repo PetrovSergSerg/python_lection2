@@ -1,4 +1,4 @@
-import utils
+import model.utils as utils
 from random import randint
 import string
 
