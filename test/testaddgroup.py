@@ -13,21 +13,21 @@ def app(request):
 
 
 def test_add_empty_group(app):
-    app.login(User.ADMIN)
+    app.session.login(User.ADMIN)
     group = Group()
-    app.create_new_group(group)  # generate empty
-    app.logout()
+    app.group.create_new_group(group)  # generate empty
+    app.session.logout()
 
 
 def test_add_handled_group(app):
-    app.login(User.ADMIN)
+    app.session.login(User.ADMIN)
     group = Group(name='any group', header='any header', footer='any footer')
-    app.create_new_group(group)
-    app.logout()
+    app.group.create_new_group(group)
+    app.session.logout()
 
 
 def test_add_random_group(app):
-    app.login(User.ADMIN)
+    app.session.login(User.ADMIN)
     group = Group().set_random_parameters()  # generate fully random group
-    app.create_new_group(group)
-    app.logout()
+    app.group.create_new_group(group)
+    app.session.logout()
