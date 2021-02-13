@@ -1,5 +1,8 @@
 from selenium.webdriver.support.ui import Select
 from model.contact import Contact
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 
 class ContactHelper:
@@ -48,3 +51,55 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
         self.menu.home()
+
+    def delete_first_contact_form_itself(self):
+        wd = self.app.wd
+        self.menu.home()
+
+        edit = wd.find_element_by_xpath("//img[@title='Edit']")
+        edit.click()
+
+        delete = wd.find_element_by_xpath("//input[@type='submit'][@value='Delete']")
+        delete.click()
+
+        self.menu.home()
+
+    def delete_first_contact_from_list(self):
+        wd = self.app.wd
+        self.menu.home()
+
+        wd.find_element_by_name("selected[]").click()
+
+        delete = wd.find_element_by_xpath("//input[@type='button'][@value='Delete']")
+        delete.click()
+
+        try:
+            WebDriverWait(wd, 1).until(EC.alert_is_present(), 'Не дождались алёрта')
+            alert = wd.switch_to_alert()
+            alert.accept()
+        except TimeoutException:
+            print("no alert")
+        finally:
+            self.menu.home()
+
+    def delete_last_contact_form_list(self):
+        wd = self.app.wd
+        self.menu.home()
+
+        checkbox_list = wd.find_elements_by_name("selected[]")
+        assert len(checkbox_list) > 0
+
+        checkbox_last = checkbox_list[len(checkbox_list) - 1]
+        checkbox_last.click()
+
+        delete = wd.find_element_by_xpath("//input[@type='button'][@value='Delete']")
+        delete.click()
+
+        try:
+            WebDriverWait(wd, 1).until(EC.alert_is_present(), 'Не дождались алёрта')
+            alert = wd.switch_to_alert()
+            alert.accept()
+        except TimeoutException:
+            print("no alert")
+        finally:
+            self.menu.home()
