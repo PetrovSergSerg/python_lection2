@@ -1,4 +1,5 @@
 from fixture.group import GroupHelper
+from random import randint
 
 
 class GroupListHelper:
@@ -7,23 +8,15 @@ class GroupListHelper:
         self.menu = app.menu
         self.group = app.group
 
-    def select_first_group(self):
-        wd = self.app.wd
-        self.menu.groups()
-
-        wd.find_element_by_name("selected[]").click()
-
-        return self
-
-    def select_last_group(self):
+    def select_any_group(self):
         wd = self.app.wd
         self.menu.groups()
 
         checkbox_list = wd.find_elements_by_name("selected[]")
         assert len(checkbox_list) > 0
 
-        checkbox_last = checkbox_list[len(checkbox_list) - 1]
-        checkbox_last.click()
+        checkbox = checkbox_list[randint(0, len(checkbox_list) - 1)]
+        checkbox.click()
 
         return self
 
