@@ -41,7 +41,7 @@ class ContactListHelper:
 
         try:
             WebDriverWait(wd, 1).until(EC.alert_is_present(), 'Не дождались алёрта')
-            alert = wd.switch_to_alert()
+            alert = wd.switch_to.alert
             alert.accept()
         except TimeoutException:
             print("no alert")
@@ -52,7 +52,7 @@ class ContactListHelper:
         wd = self.app.wd
         self.menu.home()
 
-        checkbox_list = wd.find_element_by_name("selected[]")
+        checkbox_list = wd.find_elements_by_name("selected[]")
         assert len(checkbox_list) > 0
 
         checkbox_last = checkbox_list[len(checkbox_list) - 1]
@@ -63,7 +63,7 @@ class ContactListHelper:
 
         try:
             WebDriverWait(wd, 1).until(EC.alert_is_present(), 'Не дождались алёрта')
-            alert = wd.switch_to_alert()
+            alert = wd.switch_to.alert
             alert.accept()
         except TimeoutException:
             print("no alert")

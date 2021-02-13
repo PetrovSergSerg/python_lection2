@@ -22,6 +22,6 @@ def test_add_handled_contact(app):
 
 def test_add_random_contact(app):
     app.session.login(User.ADMIN)
-    random_contact = Contact().set_random_parameters()  # generate fully random contact
+    random_contact = Contact().set_all_parameters_to_random_value()  # generate fully random contact
     app.contact.create(random_contact)
     app.session.logout()

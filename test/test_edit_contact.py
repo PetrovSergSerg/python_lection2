@@ -8,7 +8,7 @@ def test_edit_first_contact_from_list_to_random_parameters(app):
     contact2 = Contact(lastname='second', firstname='contact')
     app.contact.create(contact1)
     app.contact.create(contact2)
-    contact_new_state = Contact().set_random_parameters()
+    contact_new_state = Contact().set_random_parameters_to_random_value()
     app.contact_list.get_first_contact().edit(contact_new_state)
     app.session.logout()
 
@@ -35,7 +35,7 @@ def test_edit_last_contact_from_list_to_random_parameters(app):
     contact2 = Contact(lastname='second', firstname='contact')
     app.contact.create(contact1)
     app.contact.create(contact2)
-    contact_new_state = Contact().set_random_parameters()
+    contact_new_state = Contact().set_random_parameters_to_random_value()
     app.contact_list.get_last_contact().edit(contact_new_state)
     app.session.logout()
 

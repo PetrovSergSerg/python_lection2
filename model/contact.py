@@ -45,7 +45,7 @@ class Contact:
                 setattr(self, name, '')
         return self
 
-    def set_random_parameters(self):
+    def set_random_parameters_to_random_value(self):
         # getrandbits(1) returns 0 or 1 with 50% probability
         # with 50% probability generate random word on alphabet with random length
         # and with probability 50% returns EMPTY_STRING
@@ -118,7 +118,7 @@ class Contact:
 
         return self
 
-    def set_all_random_parameters(self):
+    def set_all_parameters_to_random_value(self):
         self.lastname = utils.get_random_word(alphabet, randint(3, 10))
         self.firstname = utils.get_random_word(alphabet, randint(3, 10))
         self.middlename = utils.get_random_word(alphabet, randint(3, 10))
