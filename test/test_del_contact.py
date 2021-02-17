@@ -8,7 +8,7 @@ def test_delete_any_contact_from_list(app):
     contact2 = Contact(lastname='second', firstname='contact')
     app.contact.create(contact1)
     app.contact.create(contact2)
-    app.contact_list.select_any_contact().delete()
+    app.contact.delete_any_contact_form_list()
     app.session.logout()
 
 
@@ -18,7 +18,7 @@ def test_delete_any_contact_from_itself(app):
     contact2 = Contact(lastname='second', firstname='contact')
     app.contact.create(contact1)
     app.contact.create(contact2)
-    app.contact_list.get_any_contact().delete()
+    app.contact.delete_any_contact_from_itself()
     app.session.logout()
 
 

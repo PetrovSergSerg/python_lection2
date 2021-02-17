@@ -9,7 +9,7 @@ def test_edit_any_contact_from_list_to_random_parameters(app):
     app.contact.create(contact1)
     app.contact.create(contact2)
     contact_new_state = Contact().set_random_parameters_to_random_value()
-    app.contact_list.get_any_contact().edit(contact_new_state)
+    app.contact.edit_any_contact(contact_new_state)
     app.session.logout()
 
 
@@ -25,5 +25,5 @@ def test_edit_any_contact_from_list_to_handled_parameters(app):
                                 homepage='http://', byear='1994', bmonth='April', bday='15', ayear='2003',
                                 amonth='September', aday='4', address_secondary='xxx', phone_secondary='777',
                                 notes='zzz')
-    app.contact_list.get_any_contact().edit(contact_new_state)
+    app.contact.edit_any_contact(contact_new_state)
     app.session.logout()

@@ -3,6 +3,7 @@ from model.contact import Contact
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from random import randint
 
 
 class ContactHelper:
@@ -77,8 +78,15 @@ class ContactHelper:
 
         self.menu.home()
 
-    def edit(self, new_contact: Contact):
+    def edit_any_contact(self, new_contact: Contact):
         wd = self.app.wd
+        self.menu.home()
+
+        edit_list = wd.find_elements_by_xpath("//img[@title='Edit']")
+        assert len(edit_list) > 0
+
+        edit = edit_list[randint(0, len(edit_list) - 1)]
+        edit.click()
 
         if new_contact.firstname is not None:
             wd.find_element_by_name("firstname").clear()
@@ -164,15 +172,22 @@ class ContactHelper:
 
         self.menu.home()
 
-    def delete(self):
+    def delete_any_contact_from_itself(self):
         wd = self.app.wd
+        self.menu.home()
+
+        edit_list = wd.find_elements_by_xpath("//img[@title='Edit']")
+        assert len(edit_list) > 0
+
+        edit = edit_list[randint(0, len(edit_list) - 1)]
+        edit.click()
 
         delete = wd.find_element_by_xpath("//input[@type='submit'][@value='Delete']")
         delete.click()
 
         self.menu.home()
 
-    def delete_last_contact_form_list(self):
+    def delete_any_contact_form_list(self):
         wd = self.app.wd
         self.menu.home()
 
@@ -187,7 +202,7 @@ class ContactHelper:
 
         try:
             WebDriverWait(wd, 1).until(EC.alert_is_present(), 'Не дождались алёрта')
-            alert = wd.switch_to_alert()
+            alert = wd.switch_to.alert
             alert.accept()
         except TimeoutException:
             print("no alert")
