@@ -2,7 +2,6 @@ from selenium import webdriver
 from fixture.session import SessionHelper
 from fixture.menu import MenuHelper
 from fixture.group import GroupHelper
-from fixture.group_list import GroupListHelper
 from fixture.contact_list import ContactListHelper
 from fixture.contact import ContactHelper
 
@@ -14,7 +13,6 @@ class Application:
         self.session = SessionHelper(self)
         self.menu = MenuHelper(self)
         self.group = GroupHelper(self)
-        self.group_list = GroupListHelper(self)
         self.contact = ContactHelper(self)
         self.contact_list = ContactListHelper(self)
 
