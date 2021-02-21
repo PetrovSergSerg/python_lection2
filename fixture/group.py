@@ -47,17 +47,15 @@ class GroupHelper:
         self.return_to_groups_page()
 
     def fill(self, group):
-        wd = self.app.wd
+        self.type_in_field("group_name", group.name)
+        self.type_in_field("group_header", group.header)
+        self.type_in_field("group_footer", group.footer)
 
-        if group.name is not None:
-            wd.find_element_by_name("group_name").clear()
-            wd.find_element_by_name("group_name").send_keys(group.name)
-        if group.header is not None:
-            wd.find_element_by_name("group_header").clear()
-            wd.find_element_by_name("group_header").send_keys(group.header)
-        if group.footer is not None:
-            wd.find_element_by_name("group_footer").clear()
-            wd.find_element_by_name("group_footer").send_keys(group.footer)
+    def type_in_field(self, field_name, value):
+        wd = self.app.wd
+        if value is not None:
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(value)
 
     def return_to_groups_page(self):
         wd = self.app.wd
